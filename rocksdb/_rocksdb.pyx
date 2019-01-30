@@ -1449,14 +1449,18 @@ cdef class DB(object):
 
         self.opts = opts
         self.opts.in_use = True
-
-    def __dealloc__(self):
+    
+    def close(self):
         if not self.db == NULL:
             with nogil:
                 del self.db
+                self.db = NULL
 
         if self.opts is not None:
             self.opts.in_use = False
+    
+    def __dealloc__(self):
+        self.close()
 
     def put(self, key, value, sync=False, disable_wal=False):
         cdef Status st
