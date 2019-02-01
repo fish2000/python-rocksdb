@@ -20,7 +20,7 @@ if platform.system() == 'Darwin':
 
 setup(
     name="python-rocksdb",
-    version='0.6.9',
+    version='0.7.0',
     description="Python bindings for RocksDB",
     keywords='rocksdb',
     author='Ming Hsuan Tu',
@@ -42,5 +42,6 @@ setup(
         "doc": ['sphinx_rtd_theme', 'sphinx'],
         "test": ['pytest'],
     },
-    include_package_data=True
+    include_package_data=True,
+    zip_safe=False,
 )
